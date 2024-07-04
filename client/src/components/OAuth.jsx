@@ -10,6 +10,7 @@ export default function OAuth() {
     const auth = getAuth(app);
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const handleGoogleClick = async () => {
         const provider = new GoogleAuthProvider();
         provider.setCustomParameters({ prompt: "select_account" });
@@ -26,7 +27,7 @@ export default function OAuth() {
                 })
             });
             const data = await res.json();
-            if (res.ok) {
+            if (data.success) {
                 dispatch(signInSuccess(data));
                 navigate("/");
             }
